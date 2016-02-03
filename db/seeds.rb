@@ -5,3 +5,6 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+Contactkind.create(id: 1, name: "サービスについて")
+Contactkind.create(id: 2, name: "採用について")
+Contactkind.create(id: 3, name: "取材について")

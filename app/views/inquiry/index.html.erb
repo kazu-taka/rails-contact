@@ -1,0 +1,94 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12">
+      <%= form_for @inquiry, url: inquiry_confirm_path do |f| %>
+        <div class="page-header">
+          <h1>お問い合わせ</h1>
+        </div>
+
+        <% if @inquiry.errors.any? %>
+          <div class="alert alert-danger" role="alert">
+            <strong>入力内容にエラーがあります</strong>
+          </div>
+        <% end %>
+        <table class="table">
+          <tr>
+            <th>名前<span class="text-danger">（必須）</span></th>
+            <td><%= f.text_field :name %></td>
+            <td>
+              <% if @inquiry.errors.messages[:name].any? %>
+                <div class="font-red font-bold">
+                  <ul>
+                    <% @inquiry.errors.messages[:name].each do |msg| %>
+                      <li><%= msg %></li>
+                    <% end %>
+                  </ul>
+                </div>
+              <% end %>
+            </td>
+          </tr>
+          <tr>
+            <th>メールアドレス<span class="text-danger">（必須）</span><br>
+              <span></span>
+            </th>
+            <td><%= f.text_field :email %></td>
+            <td>
+              <% if @inquiry.errors.messages[:email].any? %>
+                <div class="font-red font-bold">
+                  <ul>
+                    <% @inquiry.errors.messages[:email].each do |msg| %>
+                      <li><%= msg %></li>
+                    <% end %>
+                  </ul>
+                </div>
+              <% end %>
+            </td>
+          </tr>
+          <tr>
+            <th>電話番号<span class="text-danger">（必須）</span></th>
+            <td><%= f.text_field :tel %></td>
+            <td>
+              <% if @inquiry.errors.messages[:tel].any? %>
+                <div class="font-red font-bold">
+                  <ul>
+                    <% @inquiry.errors.messages[:tel].each do |msg| %>
+                      <li><%= msg %></li>
+                    <% end %>
+                  </ul>
+                </div>
+              <% end %>
+            </td>
+          </tr>
+          <tr>
+            <th>お問い合わせ種別<span class="text-danger">（必須）</span></th>
+            <td><% @contactkinds.each do | contactkind | %>
+                  <%= check_box_tag "inquiry[contactkind][]", contactkind.id %>
+                  <%= f.label "contactkind_#{contactkind.id}", contactkind.name %>
+                <% end %>
+            </td>
+            <td>
+
+            </td>
+          </tr>
+          <tr>
+            <th>お問い合わせ内容<span class="text-danger">（必須）</span></th>
+            <td><%= f.text_area :message %></td>
+            <td>
+              <% if @inquiry.errors.messages[:message].any? %>
+                <div class="font-red font-bold">
+                  <ul>
+                    <% @inquiry.errors.messages[:message].each do |msg| %>
+                      <li><%= msg %></li>
+                    <% end %>
+                  </ul>
+                </div>
+              <% end %>
+            </td>
+          </tr>
+        </table>
+        <%= f.submit '確認', class: 'btn btn-primary' %>
+        <input type="reset" value='クリア' class="btn btn-default">
+      <% end %>
+    </div>
+  </div>
+</div>
