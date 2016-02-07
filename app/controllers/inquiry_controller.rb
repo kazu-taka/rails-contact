@@ -8,6 +8,7 @@ class InquiryController < ApplicationController
 
   def confirm
     @inquiry = Inquiry.new(inquiry_params)
+    @contactkinds = Contactkind.find(@inquiry.contactkind)
     # 入力値のチェック
     if @inquiry.valid?
       # OK。確認画面を表示
@@ -28,7 +29,7 @@ class InquiryController < ApplicationController
       # メール送信
       @inquiry = Inquiry.new(inquiry_params)
       InquiryMailer.received_email(@inquiry).deliver
-          # 完了画面を表示
+      # 完了画面を表示
       render :action => 'thanks'
     end
 

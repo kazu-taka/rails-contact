@@ -32,9 +32,9 @@
           <tr>
             <th>お問い合わせ種別</th>
             <td>
-              <%= f.hidden_field :contactkind %>
-              <% @inquiry.contactkind.each do |contactkind| %>
-                <%= contactkind %>
+              <% @contactkinds.each do |contactkind| %>
+                <%= f.hidden_field "inquiry[contactkind][]", value: contactkind.id %>
+                <%= contactkind.name %><br>
               <% end %>
             </td>
           </tr>
@@ -47,7 +47,7 @@
           </tr>
         </table>
         <%= f.submit '送信', class: 'btn btn-primary' %>
-        <%= f.submit '戻る', name: 'back', class: 'btn btn-default' %>
+        <input type="button" value="戻る" onClick="history.back()" class="btn btn-default">
       <% end %>
     </div>
   </div>

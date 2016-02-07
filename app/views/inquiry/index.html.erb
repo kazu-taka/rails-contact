@@ -62,9 +62,10 @@
           <tr>
             <th>お問い合わせ種別<span class="text-danger">（必須）</span></th>
             <td><% @contactkinds.each do | contactkind | %>
-                  <%= check_box_tag "inquiry[contactkind][]", contactkind.id %>
-                  <%= f.label "contactkind_#{contactkind.id}", contactkind.name %>
-                <% end %>
+              <%= check_box_tag "inquiry[contactkind][]", contactkind.id, checked = false,
+                  id: "inquiry_contactkind_#{contactkind.id}" %>
+              <%= label_tag "inquiry[contactkind]_#{contactkind.id}", contactkind.name %>
+                  <% end %>
             </td>
             <td>
 
